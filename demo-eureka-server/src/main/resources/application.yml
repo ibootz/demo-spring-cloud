@@ -1,0 +1,25 @@
+spring:
+  application:
+    name: demo-eureka-server
+  banner:
+    charset: UTF-8
+  messages:
+    encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  servlet:
+    context-path: /demo
+  tomcat:
+    uri-encoding: UTF-8
+eureka:
+  server:
+    enable-self-preservation: false

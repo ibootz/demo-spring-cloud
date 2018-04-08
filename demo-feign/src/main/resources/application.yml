@@ -1,0 +1,35 @@
+spring:
+  application:
+    name: demo-feign
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss.SSS
+    time-zone: Asia/Shanghai
+server:
+  port: 8361
+  servlet:
+    path: /demo
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+ribbon:
+  ConnectTimeout: 2000
+  ReadTimeout: 2000
+  OkToRetryOnAllOperations: true
+  MaxAutoRetriesNextService: 1
+  MaxAutoRetries: 1
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+feign:
+  httpclient:
+    enabled: true

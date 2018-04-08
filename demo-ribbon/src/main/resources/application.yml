@@ -1,0 +1,32 @@
+spring:
+  application:
+    name: demo-ribbon
+  cloud:
+    loadbalancer:
+      retry:
+        enabled: true
+  banner:
+    charset: UTF-8
+  messages:
+    encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  servlet:
+    context-path: /demo
+  tomcat:
+    uri-encoding: UTF-8

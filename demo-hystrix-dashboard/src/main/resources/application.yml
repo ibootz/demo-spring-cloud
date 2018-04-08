@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: hystrix-dashboard
+  banner:
+    charset: UTF-8
+  messages:
+    encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+server:
+  port: 8561
+  servlet:
+    context-path: /demo
+  tomcat:
+    uri-encoding: UTF-8
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
