@@ -9,7 +9,7 @@ import org.springframework.web.client.RestTemplate;
 import com.google.gson.JsonObject;
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 
-import top.bootz.common.HttpConstants;
+import top.bootz.common.constants.HttpConstants;
 
 @Service
 public class ConsumerService {

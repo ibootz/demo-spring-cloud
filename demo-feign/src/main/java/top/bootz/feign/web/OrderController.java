@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.bootz.demoone.api.dto.Order4Get;
+import top.bootz.feign.dto.Order4Get;
 import top.bootz.feign.service.OrderService;
 
 @RestController

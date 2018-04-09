@@ -1,8 +1,8 @@
 package top.bootz.feign.service;
 
-import top.bootz.common.HttpConstants;
-import top.bootz.demoone.api.dto.Order4Get;
-import top.bootz.demoone.api.dto.Pong;
+import top.bootz.common.constants.HttpConstants;
+import top.bootz.feign.dto.Order4Get;
+import top.bootz.feign.dto.Pong;
 
 public class DefaultFallback implements OrderService, PingService {
 
@@ -14,8 +14,8 @@ public class DefaultFallback implements OrderService, PingService {
 	}
 
 	@Override
-	public Pong ping(String localAddr) {
-		return new Pong(HttpConstants.Ack.ERR.getCode(), HttpConstants.Ack.ERR.getDesc(), localAddr);
+	public Pong ping() {
+		return new Pong(HttpConstants.Ack.ERR.getCode(), HttpConstants.Ack.ERR.getDesc(), "");
 	}
 
 }

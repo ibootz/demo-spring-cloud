@@ -1,4 +1,4 @@
-package top.bootz.common;
+package top.bootz.common.constants;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;

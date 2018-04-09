@@ -1,4 +1,4 @@
-package top.bootz.ribbon.web.vo;
+package top.bootz.feign.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

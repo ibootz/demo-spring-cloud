@@ -1,17 +1,19 @@
 package top.bootz.demoone.web.controller;
 
-import org.springframework.web.bind.annotation.RequestParam;
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import top.bootz.common.HttpConstants;
-import top.bootz.demoone.api.dto.Pong;
-import top.bootz.demoone.api.service.PingRemoteService;
+import top.bootz.common.constants.HttpConstants;
+import top.bootz.demoone.dto.Pong;
 
 @RestController
-public class PingController implements PingRemoteService {
+public class PingController {
 
-	@Override
-	public Pong ping(@RequestParam("localAddr") String localAddr) {
+	@GetMapping(value = "/ping")
+	public Pong ping(HttpServletRequest request) {
+		String localAddr = request.getLocalAddr() + ":" + request.getLocalPort();
 		return new Pong(HttpConstants.Ack.OK.getCode(), HttpConstants.Ack.OK.getDesc(), localAddr);
 	}
 

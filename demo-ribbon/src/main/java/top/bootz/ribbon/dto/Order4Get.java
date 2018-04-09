@@ -1,4 +1,4 @@
-package top.bootz.demoone.api.dto;
+package top.bootz.ribbon.dto;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

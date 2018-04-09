@@ -26,9 +26,10 @@
 	</properties>
 
 	<dependencies>
+
 		<dependency>
 			<groupId>top.bootz</groupId>
-			<artifactId>demoone-api</artifactId>
+			<artifactId>demo-common</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
 
