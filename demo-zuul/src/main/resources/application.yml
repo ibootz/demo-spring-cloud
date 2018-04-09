@@ -3,8 +3,6 @@ spring:
     name: demo-zuul
 server:
   port: 8261
-  servlet:
-    context-path: /demo
 eureka:
   client:
     serviceUrl:
@@ -12,8 +10,8 @@ eureka:
 zuul:
   routes:
     demoone:
-      path: /demoone/demo/**
+      path: /demoone/**
       serviceId: DEMOONE
     demo-feign:
-      path: /demo-feign/demo/**
+      path: /demo-feign/**
       serviceId: DEMO-FEIGN
