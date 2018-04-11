@@ -1,8 +1,11 @@
 package top.bootz.zuul;
 
+import java.util.UUID;
+
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
+import org.springframework.cloud.netflix.zuul.filters.discovery.PatternServiceRouteMapper;
 import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
@@ -18,4 +21,9 @@ public class ZuulApplication {
 		return new AccessFilter();
 	}
 
+	@Bean
+	public PatternServiceRouteMapper serviceRouteMapper() {
+		return new PatternServiceRouteMapper("(?<name>^.+)-(?<version>v.+$)", "${version}/${name}");
+	}
+	
 }

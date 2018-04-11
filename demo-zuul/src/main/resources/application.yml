@@ -8,6 +8,7 @@ eureka:
     serviceUrl:
       defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
 zuul:
+  add-host-header: true
   routes:
     demoone:
       path: /demoone/**
@@ -15,3 +16,14 @@ zuul:
     demo-feign:
       path: /demo-feign/**
       serviceId: DEMO-FEIGN
+  retryable: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000

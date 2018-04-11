@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 import top.bootz.feign.dto.Pong;
 
-@FeignClient(name = "demoone", path = "/demo")
+@FeignClient(name = "demoone-v1", path = "/demo")
 public interface PingService {
 
 	@GetMapping(value = "/ping")
