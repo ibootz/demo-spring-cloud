@@ -2,7 +2,7 @@ spring:
   application:
     name: DEMO-ZUUL
 server:
-  port: 8261
+  port: 7261
 eureka:
   client:
     serviceUrl:

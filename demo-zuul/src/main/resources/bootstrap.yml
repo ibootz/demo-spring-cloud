@@ -1,8 +1,8 @@
 spring:
   application:
-    name: demoZuul
+    name: demozuul
   cloud:
     config:
       profile: default
       label: master
-      uri: http://localhost:8161/ 
+      uri: http://localhost:8161/
