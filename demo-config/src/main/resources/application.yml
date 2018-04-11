@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: demo-config
+  cloud:
+    config:
+      server:
+        git:
+          basedir:
+              
+server:
+  port: 8161
