@@ -5,7 +5,10 @@ spring:
     config:
       server:
         git:
-          basedir:
-              
+          uri: https://github.com/zhangqiang110/demo-spring-cloud.git/
+          search-paths:
+          - demo-config-repo
+          username: momogoing@163.com
+          password: xiaoqiang2008
 server:
   port: 8161
