@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo-ribbon
+    name: DEMO-RIBBON
   cloud:
     loadbalancer:
       retry:

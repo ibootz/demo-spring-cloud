@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demoone-v1
+    name: DEMOONE-V1
   banner:
     charset: UTF-8
   messages:

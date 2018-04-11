@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo-feign
+    name: DEMO-FEIGN
   jackson:
     date-format: yyyy-MM-dd HH:mm:ss.SSS
     time-zone: Asia/Shanghai

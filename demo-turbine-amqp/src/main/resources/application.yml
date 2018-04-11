@@ -1,6 +1,6 @@
 spring:
   application:
-    name: demo-turbine-amqp
+    name: DEMO-TURBINE-AMQP
   banner:
     charset: UTF-8
   messages:
