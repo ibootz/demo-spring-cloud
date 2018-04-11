@@ -4,5 +4,5 @@ spring:
   cloud:
     config:
       profile: default
-      label: master
+      label: config-label-test
       uri: http://localhost:8161/
