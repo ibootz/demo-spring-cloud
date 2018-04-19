@@ -1,0 +1,12 @@
+#encrypt:
+#  rsa:
+#    algorithm: oaep
+#    salt: demoConfigSalt
+#    strong: false
+#  key-store:
+#    location: /demo-config.keystore
+#    password: 123456
+#    alias: config-server
+#    secret: 123456
+encrypt:
+  key: myKey

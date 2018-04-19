@@ -5,10 +5,34 @@ spring:
     config:
       server:
         git:
-          uri: https://github.com/zhangqiang110/demo-spring-cloud.git/
+          uri: https://github.com/zhangqiang110/demo-spring-cloud.git
           search-paths:
           - demo-config-repo
           username: momogoing@163.com
           password: xiaoqiang2008
+        encrypt:
+          enabled: true
+  security:
+    user:
+      name: demoConfig
+      password: 5ad88542-539e-4483-9f53-ecd54486723f
 server:
   port: 8161
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+#      cors:
+#        allowed-headers: '*'
+#        allowed-methods:
+#        - HEAD
+#        - GET
+#        - POST
+#        - PUT
+#        - PATCH
+#        - DELETE
+#        - OPTIONS
+#        allowed-origins:
+#        - localhost
+#        - 172.17.125.67

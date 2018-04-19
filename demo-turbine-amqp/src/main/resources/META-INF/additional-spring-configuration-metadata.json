@@ -1,0 +1,27 @@
+{"properties": [
+  {
+    "name": "turbine.app-config",
+    "type": "java.lang.String",
+    "description": "A description for 'turbine.app-config'"
+  },
+  {
+    "name": "turbine.port",
+    "type": "java.lang.String",
+    "description": "A description for 'turbine.port'"
+  },
+  {
+    "name": "turbine.cluster-name-expression",
+    "type": "java.lang.String",
+    "description": "A description for 'turbine.cluster-name-expression'"
+  },
+  {
+    "name": "turbine.combine-host-port",
+    "type": "java.lang.String",
+    "description": "A description for 'turbine.combine-host-port'"
+  },
+  {
+    "name": "turbine.instance-url-suffix",
+    "type": "java.lang.String",
+    "description": "A description for 'turbine.instance-url-suffix'"
+  }
+]}
