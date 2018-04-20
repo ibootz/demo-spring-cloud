@@ -1,10 +1,16 @@
 spring:
   application:
-    name: demozuul
+    name: DEMO-ZUUL
   cloud:
     config:
       profile: default
       label: master
-      uri: http://localhost:8161/
-      username: demoConfig
-      password: 5ad88542-539e-4483-9f53-ecd54486723f
+      discovery:
+        enabled: true
+        service-id: DEMO-CONFIG
+server:
+  port: 8261
+eureka:
+  client:
+    serviceUrl:
+      defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
