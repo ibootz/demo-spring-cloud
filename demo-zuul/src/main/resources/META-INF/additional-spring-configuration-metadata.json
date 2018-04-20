@@ -5,23 +5,13 @@
     "description": "A description for 'hystrix.command.default.execution.isolation.thread.timeout-in-milliseconds'"
   },
   {
-    "name": "ribbon.-connect-timeout",
+    "name": "ribbon.connect-timeout",
     "type": "java.lang.String",
-    "description": "A description for 'ribbon.-connect-timeout'"
+    "description": "A description for 'ribbon.connect-timeout'"
   },
   {
-    "name": "ribbon.-read-timeout",
+    "name": "ribbon.read-timeout",
     "type": "java.lang.String",
-    "description": "A description for 'ribbon.-read-timeout'"
-  },
-  {
-    "name": "ribbon.-connect-timeout",
-    "type": "java.lang.String",
-    "description": "A description for 'ribbon.-connect-timeout'"
-  },
-  {
-    "name": "ribbon.-read-timeout",
-    "type": "java.lang.String",
-    "description": "A description for 'ribbon.-read-timeout'"
+    "description": "A description for 'ribbon.read-timeout'"
   }
 ]}

@@ -6,10 +6,12 @@ import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
 import org.springframework.cloud.netflix.zuul.EnableZuulProxy;
 import org.springframework.cloud.netflix.zuul.filters.discovery.PatternServiceRouteMapper;
 import org.springframework.context.annotation.Bean;
+import org.springframework.retry.annotation.EnableRetry;
 
-@SpringBootApplication
+@EnableRetry
 @EnableZuulProxy
 @EnableDiscoveryClient
+@SpringBootApplication
 public class ZuulApplication {
 
 	public static void main(String[] args) {
@@ -25,5 +27,12 @@ public class ZuulApplication {
 	public PatternServiceRouteMapper serviceRouteMapper() {
 		return new PatternServiceRouteMapper("(?<name>^.+)-(?<version>v.+$)", "${version}/${name}");
 	}
+
+//	@Bean
+//	@RefreshScope
+//	@ConfigurationProperties("zuul")
+//	public ZuulProperties zuulProperties() {
+//		return new ZuulProperties();
+//	}
 
 }

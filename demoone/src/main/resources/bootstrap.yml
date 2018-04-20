@@ -1,6 +1,6 @@
 spring:
   application:
-    name: DEMO-ZUUL
+    name: DEMOONE-V1
   cloud:
     config:
       fail-fast: true
