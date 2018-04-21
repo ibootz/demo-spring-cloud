@@ -37,4 +37,4 @@ server:
   tomcat:
     uri-encoding: UTF-8
 app:
-  from: demoone-git-1.0
+  from: demoone-git-2.0
