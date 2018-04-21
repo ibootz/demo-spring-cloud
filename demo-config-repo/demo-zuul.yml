@@ -27,3 +27,5 @@ hystrix:
 ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 5000
+app:
+  from: git-dev-1.0
