@@ -1,36 +1,36 @@
 spring:
-  banner:
-    charset: UTF-8
-  messages:
-    encoding: UTF-8
-  http:
-    encoding:
-      charset: UTF-8
-      enabled: true
-      force: true
-  cloud:
-    config:
-      fail-fast: true
-      profile: default
-      label: master
-      discovery:
-        enabled: true
-        service-id: DEMO-CONFIG
   rabbitmq:
     addresses: 192.168.199.113:5672,192.168.199.114:5672
     username: demo
     password: 1990912
     virtual-host: demo
     connection-timeout: 60000
+server:
+  port: 8261
 management:
   endpoints:
     web:
       exposure:
         include: '*'
-server:
-  servlet:
-    context-path: /demo
-  tomcat:
-    uri-encoding: UTF-8
+zuul:
+  add-host-header: true
+  routes:
+    demoone:
+      path: /demoone/**
+      serviceId: DEMOONE
+    demo-feign:
+      path: /demo-feign/**
+      url: http://localhost:8361/demo/
+  retryable: true
+hystrix:
+  command:
+    default:
+      execution:
+        isolation:
+          thread:
+            timeoutInMilliseconds: 30000
+ribbon:
+  ConnectTimeout: 5000
+  ReadTimeout: 5000
 app:
   from: demo-zul-git-6.0
