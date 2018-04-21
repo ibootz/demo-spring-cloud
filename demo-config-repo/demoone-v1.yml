@@ -22,10 +22,6 @@ spring:
     password: 1990912
     virtual-host: demo
     connection-timeout: 60000
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
 management:
   endpoints:
     web:
@@ -37,4 +33,4 @@ server:
   tomcat:
     uri-encoding: UTF-8
 app:
-  from: demoone-git-5.0
+  from: demoone-v1-git-6.0
