@@ -34,4 +34,4 @@ ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 5000
 app:
-  from: demo-zul-git-7.0
+  from: demo-zul-git-8.0
