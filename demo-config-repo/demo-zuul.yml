@@ -15,7 +15,7 @@ zuul:
       serviceId: DEMOONE
     demo-feign:
       path: /demo-feign/**
-      serviceId: DEMO-FEIGN
+      serviceId: http://localhost:8361/demo/
   retryable: true
 hystrix:
   command:
@@ -28,4 +28,4 @@ ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 5000
 app:
-  from: git-dev-3.0
+  from: git-dev-4.0
