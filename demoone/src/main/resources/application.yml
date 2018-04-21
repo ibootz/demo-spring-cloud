@@ -22,10 +22,6 @@ spring:
     password: 1990912
     virtual-host: demo
     connection-timeout: 60000
-eureka:
-  client:
-    serviceUrl:
-      defaultZone: http://peer1:8761/demo/eureka/,http://peer2:8762/demo/eureka/
 management:
   endpoints:
     web:
