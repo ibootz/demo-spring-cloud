@@ -28,4 +28,4 @@ ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 5000
 app:
-  from: git-dev-8.0
+  from: git-dev-9.0
