@@ -20,6 +20,6 @@ server:
     context-path: /demo
   tomcat:
     uri-encoding: UTF-8
-eureka:
-  server:
-    enable-self-preservation: false
+#eureka:
+#  server:
+#    enable-self-preservation: false

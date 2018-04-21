@@ -18,3 +18,5 @@ hystrix:
 ribbon:
   ConnectTimeout: 5000
   ReadTimeout: 5000
+app:
+  from: local-file-1.0

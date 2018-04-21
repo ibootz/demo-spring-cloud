@@ -3,6 +3,7 @@ spring:
     name: DEMO-ZUUL
   cloud:
     config:
+      fail-fast: true
       profile: default
       label: master
       discovery:
