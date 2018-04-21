@@ -1,0 +1,11 @@
+spring:
+  application:
+    name: DEMOONE-V1
+  cloud:
+    config:
+      fail-fast: true
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        service-id: DEMO-CONFIG

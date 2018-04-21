@@ -6,7 +6,7 @@ zuul:
       serviceId: DEMOONE
     demo-feign:
       path: /demo-feign/**
-      serviceId: DEMO-FEIGN
+      url: http://localhost:8361/demo/
   retryable: true
 hystrix:
   command:
