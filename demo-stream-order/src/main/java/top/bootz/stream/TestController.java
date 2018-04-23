@@ -5,23 +5,20 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
-import org.junit.Test;
-import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 import top.bootz.common.message.MessaegPayload;
 import top.bootz.stream.message.MessageSender;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
-public class DemoStreamOrderApplicationTests {
+@RestController
+public class TestController {
 
 	@Autowired
 	public MessageSender sender;
 
-	@Test
+	@GetMapping("/orderToPurchaseWithToken")
 	public void orderToPurchaseWithToken() {
 		MessaegPayload message = new MessaegPayload("app_order", "app_purchase", LocalDateTime.now(),
 				"test_order_to_purchase");
@@ -30,23 +27,23 @@ public class DemoStreamOrderApplicationTests {
 		sender.orderToPurchase(message, headers);
 	}
 
-	// @Test
+	@GetMapping("/orderToPurchase")
 	public void orderToPurchase() {
 		MessaegPayload message = new MessaegPayload("app_order", "app_purchase", LocalDateTime.now(),
 				"test_order_to_purchase");
 		sender.orderToPurchase(message, new HashMap<String, String>());
 	}
 
-	// @Test
+	@GetMapping("/orderToMall")
 	public void orderToMall() {
 		MessaegPayload message = new MessaegPayload("app_order", "app_mall", LocalDateTime.now(), "test_order_to_mall");
 		sender.orderToMall(message);
 	}
 
-	// @Test
+	@GetMapping("/orderToPurchaseRedirectMall")
 	public void orderToPurchaseRedirectMall() {
-		MessaegPayload message = new MessaegPayload("app_order", "app_purchase_redirect_app_mall", LocalDateTime.now(),
-				"test_order_to_mall");
+		MessaegPayload message = new MessaegPayload("app_order", "app_purchase", LocalDateTime.now(),
+				"test_order_to_purchase_redirect_mall");
 		sender.orderToPurchaseRedirectMall(message);
 	}
 

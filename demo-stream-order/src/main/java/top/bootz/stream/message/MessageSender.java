@@ -1,28 +1,30 @@
 package top.bootz.stream.message;
 
-import org.springframework.cloud.stream.annotation.Output;
-import org.springframework.messaging.MessageChannel;
+import java.util.Map;
 
-import top.bootz.common.message.MessageChannelConstants;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cloud.stream.annotation.EnableBinding;
+import org.springframework.messaging.support.MessageBuilder;
 
-/**
- * 向Channel发送消息
- * @author John
- *
- */
+import top.bootz.common.message.MessaegPayload;
 
-public interface MessageSender {
+@EnableBinding(value = { MessageSource.class })
+public class MessageSender {
 
-	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_CHANNEL_1)
-	MessageChannel orderToPurchase1();
+	@Autowired
+	private MessageSource messageSource;
 
-	@Output(MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
-	MessageChannel orderToMall1();
-	
-	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_REDIRECT_MALL_CHANNEL_1)
-	MessageChannel orderToPurchaseRedirectMall1();
-	
-	@Output(MessageChannelConstants.PURCHASE_TO_MALL_CHANNEL_1)
-	MessageChannel purchaseToMall1();
+	public void orderToPurchase(MessaegPayload message, Map<String, String> headers) {
+		messageSource.orderToPurchase1().send(MessageBuilder.withPayload(message).copyHeaders(headers).build(), 10000);
+	}
+
+	public void orderToMall(MessaegPayload message) {
+		messageSource.orderToMall1().send(MessageBuilder.withPayload(message).build(), 10000);
+	}
+
+	public void orderToPurchaseRedirectMall(MessaegPayload message) {
+		messageSource.orderToPurchaseRedirectMall1()
+				.send(MessageBuilder.withPayload(message).setHeader("redirect_mall", true).build(), 10000);
+	}
 
 }

@@ -11,18 +11,15 @@ import top.bootz.common.message.MessageChannelConstants;
  *
  */
 
-public interface MessageSender {
+public interface MessageSource {
 
 	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_CHANNEL_1)
 	MessageChannel orderToPurchase1();
 
 	@Output(MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
 	MessageChannel orderToMall1();
-	
+
 	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_REDIRECT_MALL_CHANNEL_1)
 	MessageChannel orderToPurchaseRedirectMall1();
-	
-	@Output(MessageChannelConstants.PURCHASE_TO_MALL_CHANNEL_1)
-	MessageChannel purchaseToMall1();
 
 }
