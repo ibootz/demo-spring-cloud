@@ -1,0 +1,14 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        order_to_mall_01:
+          group: demo_stream_mall_2
+          destination: demo.order_to_mall_02
+          content-type: application/json
+        purchase_to_mall_01:
+          group: demo_stream_mall_2
+          destination: demo.purchase_to_mall_02
+          content-type: application/json
+server:
+  port: 8861

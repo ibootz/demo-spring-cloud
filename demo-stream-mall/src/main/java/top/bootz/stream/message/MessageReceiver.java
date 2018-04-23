@@ -10,7 +10,7 @@ import org.springframework.messaging.handler.annotation.Headers;
 import org.springframework.messaging.handler.annotation.Payload;
 
 import top.bootz.common.message.MessaegPayload;
-import top.bootz.common.message.MessageChannelConstants;
+import top.bootz.common.message.MessageConstants;
 
 /**
  * 从Channel接收并处理消息
@@ -25,13 +25,13 @@ public class MessageReceiver {
 	private static final Logger log = LoggerFactory.getLogger(MessageReceiver.class);
 
 	// mall接收来自order的消息
-	@StreamListener(target = MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
+	@StreamListener(target = MessageConstants.ORDER_TO_MALL_01)
 	public void listenOrderToMall(@Payload MessaegPayload payload, @Headers Map<String, String> headers) {
 		log.info("[{}]接收到来自 [{}]的消息:[{}]", payload.getTo(), payload.getFrom(), payload.getContent());
 	}
 
 	// mall接收来自purchase的消息
-	@StreamListener(target = MessageChannelConstants.PURCHASE_TO_MALL_CHANNEL_1)
+	@StreamListener(target = MessageConstants.PURCHASE_TO_MALL_01)
 	public void listenPurchaseToMall(@Payload MessaegPayload payload, @Headers Map<String, String> headers) {
 		log.info("[{}]接收到来自 [{}]的消息:[{}]", payload.getTo(), payload.getFrom(), payload.getContent());
 		log.info("header['redirect_mall'] = {}", headers.get("redirect_mall"));

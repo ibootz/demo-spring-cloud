@@ -3,7 +3,7 @@ package top.bootz.stream.message;
 import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
-import top.bootz.common.message.MessageChannelConstants;
+import top.bootz.common.message.MessageConstants;
 
 /**
  * 订阅消息Channel
@@ -14,10 +14,10 @@ import top.bootz.common.message.MessageChannelConstants;
 
 public interface MessageSink {
 
-	@Input(MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
+	@Input(MessageConstants.ORDER_TO_MALL_01)
 	SubscribableChannel orderToMall1();
 
-	@Input(MessageChannelConstants.PURCHASE_TO_MALL_CHANNEL_1)
+	@Input(MessageConstants.PURCHASE_TO_MALL_01)
 	SubscribableChannel purchaseToMall();
 
 }

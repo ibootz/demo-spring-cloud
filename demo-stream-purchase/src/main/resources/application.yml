@@ -7,5 +7,22 @@ spring:
     password: 1990912
     virtual-host: demo
     connection-timeout: 60000
+  cloud:
+    stream:
+      bindings:
+        order_to_purchase_01:
+          group: demo_stream_order
+          destination: demo.order_to_purchase_01
+          content-type: application/json
+        purchase_to_mall_01:
+          group: demo_stream_order
+          destination: demo.purchase_to_mall_02
+          content-type: application/json
+        order_to_purchase_redirect_mall_01:
+          group: demo_stream_order
+          destination: demo.order_to_purchase_redirect_mall_01
+          content-type: application/json
 server:
-  port: 8863
+  port: 8881
+  servlet:
+    context-path: /demo

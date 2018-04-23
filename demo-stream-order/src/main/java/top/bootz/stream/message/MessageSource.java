@@ -3,7 +3,7 @@ package top.bootz.stream.message;
 import org.springframework.cloud.stream.annotation.Output;
 import org.springframework.messaging.MessageChannel;
 
-import top.bootz.common.message.MessageChannelConstants;
+import top.bootz.common.message.MessageConstants;
 
 /**
  * 向Channel发送消息
@@ -13,13 +13,13 @@ import top.bootz.common.message.MessageChannelConstants;
 
 public interface MessageSource {
 
-	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_CHANNEL_1)
+	@Output(MessageConstants.ORDER_TO_PURCHASE_01)
 	MessageChannel orderToPurchase1();
 
-	@Output(MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
+	@Output(MessageConstants.ORDER_TO_MALL_01)
 	MessageChannel orderToMall1();
 
-	@Output(MessageChannelConstants.ORDER_TO_PURCHASE_REDIRECT_MALL_CHANNEL_1)
+	@Output(MessageConstants.ORDER_TO_PURCHASE_REDIRECT_MALL_01)
 	MessageChannel orderToPurchaseRedirectMall1();
 
 }
