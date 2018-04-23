@@ -4,7 +4,8 @@ import org.springframework.cloud.stream.annotation.Input;
 import org.springframework.messaging.SubscribableChannel;
 
 /**
- * 定义消息发送渠道
+ * 订阅消息Channel
+ * 
  * @author John
  *
  */
@@ -12,9 +13,15 @@ import org.springframework.messaging.SubscribableChannel;
 public interface MessageSink {
 
 	@Input(MessageChannelConstants.ORDER_TO_PURCHASE_CHANNEL_1)
-	SubscribableChannel order2purchase1();
+	SubscribableChannel orderToPurchase1();
 
 	@Input(MessageChannelConstants.ORDER_TO_MALL_CHANNEL_1)
-	SubscribableChannel order2mall1();
+	SubscribableChannel orderToMall1();
+
+	@Input(MessageChannelConstants.ORDER_TO_PURCHASE_REDIRECT_MALL_CHANNEL_1)
+	SubscribableChannel orderToPurchase();
+
+	@Input(MessageChannelConstants.PURCHASE_TO_MALL_CHANNEL_1)
+	SubscribableChannel purchaseToMall();
 
 }

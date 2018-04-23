@@ -7,3 +7,8 @@ spring:
     password: 1990912
     virtual-host: demo
     connection-timeout: 60000
+  cloud:
+    stream:
+      bindings:
+        input:
+          group: ${spring.application.name}

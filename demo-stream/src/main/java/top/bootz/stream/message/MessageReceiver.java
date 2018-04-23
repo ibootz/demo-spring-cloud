@@ -14,10 +14,12 @@ import org.springframework.messaging.handler.annotation.SendTo;
 import org.springframework.messaging.support.MessageBuilder;
 
 /**
- * 定义消息处理程序
+ * 从Channel接收并处理消息
+ * 
  * @author John
  *
  */
+
 @EnableBinding(value = MessageSink.class)
 public class MessageReceiver {
 
