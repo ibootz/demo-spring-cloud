@@ -1,0 +1,9 @@
+spring:
+  application:
+    name: DEMO-STREAM
+  rabbitmq:
+    addresses: 192.168.199.113:5672,192.168.199.114:5672
+    username: demo
+    password: 1990912
+    virtual-host: demo
+    connection-timeout: 60000

@@ -1,0 +1,36 @@
+spring:
+  banner:
+    charset: UTF-8
+  messages:
+    encoding: UTF-8
+  http:
+    encoding:
+      charset: UTF-8
+      enabled: true
+      force: true
+  cloud:
+    config:
+      fail-fast: true
+      profile: default
+      label: master
+      discovery:
+        enabled: true
+        service-id: DEMO-CONFIG
+  rabbitmq:
+    addresses: 192.168.199.113:5672,192.168.199.114:5672
+    username: demo
+    password: 1990912
+    virtual-host: demo
+    connection-timeout: 60000
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+server:
+  servlet:
+    context-path: /demo
+  tomcat:
+    uri-encoding: UTF-8
+app:
+  from: demoone-v1-git-8.0
