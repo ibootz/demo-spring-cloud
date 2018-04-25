@@ -14,5 +14,7 @@ spring:
           group: demo_stream_mall_1
           destination: demo.purchase_to_mall_01
           content-type: application/json
+          consumer:
+            partitioned: true
 server:
   port: 8862
