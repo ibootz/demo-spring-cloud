@@ -18,6 +18,9 @@ spring:
           group: demo_stream_order
           destination: demo.order_to_mall_01
           content-type: application/json
+          producer:
+            partition-key-expression: payload.from
+            partition-count: 2
         order_to_purchase_redirect_mall_01:
           group: demo_stream_order
           destination: demo.order_to_purchase_redirect_mall_01

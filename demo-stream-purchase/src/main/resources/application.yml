@@ -16,7 +16,7 @@ spring:
           content-type: application/json
         purchase_to_mall_01:
           group: demo_stream_order
-          destination: demo.purchase_to_mall_02
+          destination: demo.purchase_to_mall_01
           content-type: application/json
         order_to_purchase_redirect_mall_01:
           group: demo_stream_order
