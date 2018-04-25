@@ -1,14 +1,20 @@
 spring:
   cloud:
     stream:
+      instance-count: 2
+      instance-index: 1
       bindings:
         order_to_mall_01:
-          group: demo_stream_mall_2
-          destination: demo.order_to_mall_02
+          group: demo_stream_mall_1
+          destination: demo.order_to_mall_01
           content-type: application/json
+          consumer:
+            partitioned: true
         purchase_to_mall_01:
-          group: demo_stream_mall_2
-          destination: demo.purchase_to_mall_02
+          group: demo_stream_mall_1
+          destination: demo.purchase_to_mall_01
           content-type: application/json
+          consumer:
+            partitioned: true
 server:
   port: 8861
