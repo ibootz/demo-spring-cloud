@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: DEMO-STREAM-PURCHASE
   rabbitmq:
     addresses: 192.168.199.113:5672,192.168.199.114:5672
     username: demo
