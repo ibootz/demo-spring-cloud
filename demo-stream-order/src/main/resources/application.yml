@@ -1,6 +1,4 @@
 spring:
-  application:
-    name: DEMO-STREAM-ORDER
   rabbitmq:
     addresses: 192.168.199.113:5672,192.168.199.114:5672
     username: demo
@@ -18,6 +16,9 @@ spring:
           group: demo_stream_order
           destination: demo.order_to_mall_01
           content-type: application/json
+          producer:
+            partition-key-expression: payload.from
+            partition-count: 2
         order_to_purchase_redirect_mall_01:
           group: demo_stream_order
           destination: demo.order_to_purchase_redirect_mall_01

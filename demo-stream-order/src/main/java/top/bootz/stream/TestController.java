@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -14,6 +16,8 @@ import top.bootz.stream.message.MessageSender;
 
 @RestController
 public class TestController {
+
+	private static final Logger log = LoggerFactory.getLogger(TestController.class);
 
 	@Autowired
 	public MessageSender sender;
@@ -42,6 +46,7 @@ public class TestController {
 
 	@GetMapping("/orderToPurchaseRedirectMall")
 	public void orderToPurchaseRedirectMall() {
+		log.info("==== start ====");
 		MessaegPayload message = new MessaegPayload("app_order", "app_purchase", LocalDateTime.now(),
 				"test_order_to_purchase_redirect_mall");
 		sender.orderToPurchaseRedirectMall(message);
