@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="STDOUT" class="org.apache.log4j.ConsoleAppender">
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%t] %-5p [%F:%L] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="ERROR"/>
+        </filter>
+    </appender>
+
+    <appender name="DEBUG" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="ImmediateFlush" value="true"/>
+        <param name="Append" value="true"/>
+        <param name="Encoding" value="UTF-8"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/yxt/debug.%d{yyyyMMdd}.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%t] %-5p [%F:%L] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="DEBUG"/>
+        </filter>
+    </appender>
+    <appender name="INFO" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="ImmediateFlush" value="true"/>
+        <param name="Append" value="true"/>
+        <param name="Encoding" value="UTF-8"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/yxt/info.%d{yyyyMMdd}.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%t] %-5p [%F:%L] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="INFO"/>
+            <param name="LevelMax" value="INFO"/>
+        </filter>
+    </appender>
+    <appender name="ERROR" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="ImmediateFlush" value="true"/>
+        <param name="Append" value="true"/>
+        <param name="Encoding" value="UTF-8"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/yxt/error.%d{yyyyMMdd}.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] [%t] %-5p [%F:%L] - %m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="WARN"/>
+            <param name="LevelMax" value="FATAL"/>
+        </filter>
+    </appender>
+    <appender name="EVENTLOG" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="Encoding" value="UTF-8"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/yxt/event.%d{yyyyMMdd}.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="TRACE"/>
+            <param name="LevelMax" value="TRACE"/>
+        </filter>
+    </appender>
+    <appender name="TIMELOG" class="org.apache.log4j.rolling.RollingFileAppender">
+        <param name="ImmediateFlush" value="true"/>
+        <param name="BufferedIO" value="false"/>
+        <param name="Encoding" value="UTF-8"/>
+        <rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+            <param name="FileNamePattern" value="${catalina.home}/logs/yxt/time.%d{yyyyMMdd}.log"/>
+        </rollingPolicy>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%m%n"/>
+        </layout>
+        <filter class="org.apache.log4j.varia.LevelRangeFilter">
+            <param name="LevelMin" value="DEBUG"/>
+            <param name="LevelMax" value="DEBUG"/>
+        </filter>
+    </appender>
+
+	<logger name="com.yxt.oauth.api.aop.ControllerAspect">
+        <level value="trace"/>
+        <appender-ref ref="TIMELOG"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+    <logger name="com.yxt.oauth.api.controller.CaptchaController">
+        <level value="trace"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+    <logger name="com.yxt.oauth.api.controller.KnowledgeController">
+        <level value="trace"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+    <logger name="com.yxt.oauth.api.controller.EventLogController">
+        <level value="trace"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+    <logger name="com.yxt.common.service.SmsService">
+        <level value="trace"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+    <logger name="com.yxt.oauth.service.rabbitmq.RabbitmqListener">
+        <level value="trace"/>
+        <appender-ref ref="EVENTLOG"/>
+    </logger>
+
+    <logger name="com.yxt">
+        <level value="error"/>
+    </logger>
+
+    <root>
+        <priority value="error"/>
+        <appender-ref ref="STDOUT"/>
+        <appender-ref ref="DEBUG"/>
+        <appender-ref ref="ERROR"/>
+        <appender-ref ref="INFO"/>
+    </root>
+</log4j:configuration>
