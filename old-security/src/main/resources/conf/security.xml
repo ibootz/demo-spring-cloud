@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!-- - Sample namespace-based configuration - -->
+
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:oauth2="http://www.springframework.org/schema/security/oauth2"
+	xmlns:mvc="http://www.springframework.org/schema/mvc" xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc-3.1.xsd
+                        http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security-3.2.xsd
+                        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-3.0.xsd
+                        http://www.springframework.org/schema/security/oauth2 http://www.springframework.org/schema/security/spring-security-oauth2-1.0.xsd">
+
+	<http pattern="/v1/resource/**" create-session="never"
+		entry-point-ref="oauth2AuthenticationEntryPoint"
+		access-decision-manager-ref="oauth2AccessDecisionManager">
+		<anonymous enabled="false" />
+		<intercept-url pattern="/v1/resource/**" access="ROLE_USER,SCOPE_READ" />
+		<custom-filter ref="picResourceServer" before="PRE_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+	</http>
+
+	<oauth2:resource-server id="picResourceServer"
+		resource-id="pic-resource" token-services-ref="tokenServices" />
+
+	<http pattern="/oauth/token" create-session="stateless"
+		authentication-manager-ref="clientAuthenticationManager"
+		entry-point-ref="oauth2AuthenticationEntryPoint">
+		<intercept-url pattern="/oauth/token" access="IS_AUTHENTICATED_FULLY" />
+		<anonymous enabled="false" />
+		<http-basic entry-point-ref="oauth2AuthenticationEntryPoint" />
+		<custom-filter ref="clientCredentialsTokenEndpointFilter"
+			before="BASIC_AUTH_FILTER" />
+		<access-denied-handler ref="oauthAccessDeniedHandler" />
+	</http>
+
+	<http auto-config="false" entry-point-ref="authenticationEntryPoint">
+		<intercept-url pattern="/oauth/**" access="ROLE_USER" />
+		<intercept-url pattern="/**" access="IS_AUTHENTICATED_ANONYMOUSLY" />		
+		<anonymous />
+		<custom-filter position="FORM_LOGIN_FILTER"  
+             ref="myFilter" />
+	</http>
+	
+	<beans:bean id="authenticationEntryPoint"  
+        class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">  
+        <beans:property name="loginFormUrl" value="/login.jsp" />  
+    </beans:bean>
+	
+	<beans:bean id="myFilter" class="com.yxt.oauth.security.auth.CustomUsernamePasswordAuthenticationFilter">  
+        <beans:property name="authenticationManager" ref="authenticationManager"/>        
+        <beans:property name="authenticationSuccessHandler" ref="successHandler"/> 
+        <beans:property name="authenticationFailureHandler" ref="failureHandler"/> 
+    </beans:bean>
+    
+    <beans:bean id="successHandler" class="com.yxt.oauth.security.auth.AuthenticationSuccessHandler">  
+        <beans:property name="defaultTargetUrl" value="/oauth_approval.jsp"/>  
+    </beans:bean>
+    
+    <beans:bean id="failureHandler" class="com.yxt.oauth.security.auth.AuthenticationFailHandler">  
+        <beans:property name="defaultFailureUrl" value="/login.jsp?error=true"/>  
+    </beans:bean>
+    	
+	<authentication-manager alias="authenticationManager">  
+        <authentication-provider  
+            user-service-ref="userDetailService">
+                 <password-encoder ref="myEncoder" />           
+        </authentication-provider>  
+    </authentication-manager>
+    
+    <beans:bean id="myEncoder" class="com.yxt.oauth.security.password.EncodePasswordEncoder" />
+  
+    <beans:bean id="userDetailService"  
+         class="com.yxt.oauth.security.user.UserService" />  
+
+	<beans:bean id="clientCredentialsTokenEndpointFilter"
+		class="org.springframework.security.oauth2.provider.client.ClientCredentialsTokenEndpointFilter">
+		<beans:property name="authenticationManager" ref="clientAuthenticationManager" />
+	</beans:bean>
+
+	<beans:bean id="oauth2AuthenticationEntryPoint"
+		class="org.springframework.security.oauth2.provider.error.OAuth2AuthenticationEntryPoint" />
+
+	<beans:bean id="oauthAccessDeniedHandler"
+		class="org.springframework.security.oauth2.provider.error.OAuth2AccessDeniedHandler" />
+
+	<authentication-manager id="clientAuthenticationManager">
+		<authentication-provider user-service-ref="oauth2ClientDetailsUserService" />
+	</authentication-manager>
+
+	<beans:bean id="oauth2ClientDetailsUserService"
+		class="org.springframework.security.oauth2.provider.client.ClientDetailsUserDetailsService">
+		<beans:constructor-arg ref="clientDetailsService" />
+	</beans:bean>
+	
+	<beans:bean id="clientDetailsService" class="org.springframework.security.oauth2.provider.client.JdbcClientDetailsService">  
+    	<beans:constructor-arg index="0" ref="dataSource"/>  
+	</beans:bean>
+
+	<!-- oauth2:client-details-service id="clientDetailsService">
+		<oauth2:client client-id="m1"
+			authorized-grant-types="password,authorization_code,refresh_token,implicit"
+			secret="s1" scope="read,write,trust" authorities="ROLE_CLIENT, ROLE_TRUSTED_CLIENT"
+			resource-ids="pic-resource" />
+	</oauth2:client-details-service-->
+	
+	<beans:bean id="tokenStore"
+		class="com.yxt.oauth.security.store.CacheTokenStore">
+	</beans:bean>
+
+	<beans:bean id="tokenServices"
+		class="com.yxt.oauth.security.store.CacheTokenServices">
+		<beans:property name="tokenStore" ref="tokenStore" />
+		<beans:property name="supportRefreshToken" value="true" />
+		<beans:property name="clientDetailsService" ref="clientDetailsService" />
+	</beans:bean>	
+
+	<oauth2:authorization-server
+		client-details-service-ref="clientDetailsService" token-services-ref="tokenServices"
+		user-approval-handler-ref="oauthUserApprovalHandler"
+		user-approval-page="/oauth_approval.jsp" error-page="/oauth_error.jsp">		
+		<oauth2:authorization-code authorization-code-services-ref="authorizationCodeServices"/>
+		<oauth2:implicit /> 
+		<oauth2:refresh-token />
+		<oauth2:client-credentials />
+		<oauth2:password />
+	</oauth2:authorization-server>
+
+	<beans:bean id="oauthUserApprovalHandler"
+		class="org.springframework.security.oauth2.provider.approval.DefaultUserApprovalHandler" />
+
+	<beans:bean id="oauth2AccessDecisionManager"
+		class="org.springframework.security.access.vote.UnanimousBased">
+		<beans:constructor-arg>
+			<beans:list>
+				<beans:bean
+					class="org.springframework.security.oauth2.provider.vote.ScopeVoter" />
+				<beans:bean class="org.springframework.security.access.vote.RoleVoter" />
+				<beans:bean
+					class="org.springframework.security.access.vote.AuthenticatedVoter" />
+			</beans:list>
+		</beans:constructor-arg>
+	</beans:bean>
+
+    <beans:bean id="authorizationCodeServices"
+		class="com.yxt.oauth.security.code.CacheAuthorizationCodeService" />
+		
+	<beans:bean id="dataSource" class="com.alibaba.druid.pool.DruidDataSource">
+         <beans:property name="url" value="jdbc:mysql://172.17.128.231:3306/lecai2?useUnicode=true&amp;characterEncoding=UTF-8" />
+         <beans:property name="username" value="root" />        
+         <beans:property name="password" value="pwdasdwx" />        
+         <beans:property name="initialSize" value="1" />
+         <beans:property name="minIdle" value="1" />
+         <beans:property name="maxActive" value="5" />
+         <beans:property name="maxWait" value="60000" />
+         <beans:property name="timeBetweenEvictionRunsMillis" value="60000" />
+         <beans:property name="minEvictableIdleTimeMillis" value="300000" />         
+         <beans:property name="poolPreparedStatements" value="false" />
+         <beans:property name="maxPoolPreparedStatementPerConnectionSize" value="20" />         
+     </beans:bean> 
+</beans:beans>
